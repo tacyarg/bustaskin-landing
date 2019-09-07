@@ -28,7 +28,7 @@ spec:
   ports:
     - name: web
       protocol: TCP
-      port: 9001
+      port: 4500
   selector:
     app: bustaskin-landing
 ---
