@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tradebot
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+spec:
+  tls:
+  - hosts:
+    - bustaskin.com
+    secretName: bustaskin-landing
+  rules:
+    - host: bustaskin.com
+      http:
+        paths:
+          - backend:
+              serviceName: bustaskin-landing
+              servicePort: web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bustaskin-landing
+spec:
+  type: NodePort
+  ports:
+    - name: web
+      protocol: TCP
+      port: 9001
+  selector:
+    app: bustaskin-landing
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bustaskin-landing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bustaskin-landing
+  template:
+    metadata:
+      labels:
+        app: bustaskin-landing
+    spec:
+      containers:
+        - name: bustaskin-landing
+          image: registry.chips.gg/bustaskin-landing
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: regcred

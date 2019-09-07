@@ -1,0 +1,30 @@
+{
+  "name": "bustaskin-landing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graycatfromspace/bustaskin-landing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/graycatfromspace/bustaskin-landing/issues"
+  },
+  "homepage": "https://github.com/graycatfromspace/bustaskin-landing#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-bearer-token": "^2.1.1",
+    "lodash": "^4.17.5",
+    "moment": "^2.20.1"
+  }
+}
